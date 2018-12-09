@@ -1,0 +1,46 @@
+[DEFAULT]
+
+ignoreip = {{ ignoreip | join(' ') }}
+
+bantime = {{ bantime }}
+findtime = {{ findtime }}
+default_maxretry = {{ maxretry }}
+
+[nginx-http-auth]
+enabled = {{ http_auth_enabled }}
+filter = nginx-http-auth
+port = http,https
+logpath = {{ http_auth_log_path }}
+maxretry =  {{ http_auth_maxretry }}
+
+[nginx-noscript]
+enabled =  {{ noscript_enabled }}
+port = http,https
+filter = nginx-noscript
+logpath = {{ noscript_log_path }}
+maxretry = {{ noscript_max_retry }}
+
+[nginx-nohome]
+
+enabled  = {{ nohome_enabled}}
+port     = http,https
+filter   = nginx-nohome
+logpath  = {{ nohome_log_path }}
+maxretry = {{ nohome_maxretry }}
+
+[nginx-noproxy]
+
+enabled  = {{ noproxy_enabled }}
+port     = http,https
+filter   = nginx-noproxy
+logpath  = {{ noproxy_logpath }}
+maxretry = {{ noproxy_maxretry }} 
+
+
+[nginx-badbots]
+
+enabled  = {{ badbots_enabled }}
+port     = http,https
+filter   = nginx-badbots
+logpath  = {{ badbots_logpath }}
+maxretry = {{ badbots_maxretry }}

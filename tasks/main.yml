@@ -1,0 +1,51 @@
+---
+- name: Install fail2ban
+  apt:
+    name: fail2ban
+    state: present
+  notify: start fail2ban
+
+- name: Template local config
+  template:
+    src: jail.local.j2
+    dest: /etc/fail2ban/jail.local
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart fail2ban
+
+- name: Copy apache bad bots filter for nginx
+  copy:
+    src: /etc/fail2ban/filter.d/apache-badbots.conf 
+    dest: /etc/fail2ban/filter.d/nginx-badbots.conf
+    remote_src: yes
+    owner: root
+    mode: 0644
+  notify: restart fail2ban
+
+- name: Copy noscript filter
+  copy:
+    src: noscript.conf
+    dest: /etc/fail2ban/filter.d/nginx-noscript.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart fail2ban
+
+- name: Copy no home filter
+  copy: 
+    src: nohome.conf
+    dest: /etc/fail2ban/filter.d/nginx-nohome.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart fail2ban
+
+- name: Copy no proxy filter
+  copy: 
+    src: noproxy.conf
+    dest: /etc/fail2ban/filter.d/nginx-noproxy.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart fail2ban

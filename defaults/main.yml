@@ -1,0 +1,30 @@
+---
+ignoreip_extra: []
+bantime: 600
+findtime: 3600
+default_maxretry: 6
+
+# enable nginx monitoring
+http_auth_enabled: true
+http_auth_log_path: /var/log/nginx/error.log
+http_auth_maxretry: 6
+
+
+noscript_enabled: true
+noscript_log_path: /var/log/nginx/access.log
+noscript_max_retry: 6
+
+# nginx home folder requests
+nohome_enabled: true
+nohome_log_path: /var/log/nginx/access.log
+nohome_maxretry: 2
+
+# nginx noproxy
+noproxy_enabled: true
+noproxy_logpath: /var/log/nginx/access.log
+noproxy_maxretry: 2
+
+# badbots
+badbots_enabled: true
+badbots_logpath: /var/log/nginx/access.log
+badbots_maxretry: 2
